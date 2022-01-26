@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<form th:action="@{/users/createUser}" method="post">
+    <input type="text" name="firstName" >Имя
+    <input type="text" name="lastName" >Фамилия
+    <button> Создать пользователя </button>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Номер телефона</th>
+        <th>Почта</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <div th:each="el : ${users}">
+        <tr>
+            <td th:name="${el.id}"><p th:text="${el.firstName}"/></td>
+            <td th:name="${el.id}"><p th:text="${el.lastName}"/></td>
+            <td>
+                <form th:action="'/users/'+${el.id}+'/delete'" method="post">
+                    <button> Удалить пользователя</button>
+                </form>
+                <form th:action="@{/users/updateUsers}" method="post">
+                    <input type="hidden" name="id" th:value="${el.id}"}>
+                    <input type="text" name="firstName" >Имя
+                    <input type="text" name="lastName" >Фамилия
+                    <button> Обновить юзера </button>
+                </form>
+
+            </td>
+        </tr>
+    </div>
+    </tbody>
+</table>
+</body>
+</html>
