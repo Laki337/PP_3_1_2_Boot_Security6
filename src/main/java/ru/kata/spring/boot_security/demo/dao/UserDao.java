@@ -7,6 +7,6 @@ import ru.kata.spring.boot_security.demo.model.User;
 
 @Repository
 public interface UserDao extends JpaRepository<User,Long> {
-	User findUserByName(String username);
+	User findUserByName(String name);
 
 }
